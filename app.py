@@ -3,15 +3,15 @@
 # import all the required libraries
 
 from flask import Flask, render_template, request, redirect, url_for
-#import transformers
-#from transformers import BloomForCausalLM
-#from transformers import BloomForTokenClassification
-#from transformers import BloomTokenizerFast
-#import torch
+import transformers
+from transformers import BloomForCausalLM
+from transformers import BloomForTokenClassification
+from transformers import BloomTokenizerFast
+import torch
 
-#model_name = 'bigscience/bloom-1b1'
-#tokenizer = BloomTokenizerFast.from_pretrained(model_name)
-#model = BloomForCausalLM.from_pretrained(model_name)
+model_name = 'bigscience/bloom-1b1'
+tokenizer = BloomTokenizerFast.from_pretrained(model_name)
+model = BloomForCausalLM.from_pretrained(model_name)
 
 # create a flask object
 flask = Flask(__name__)
@@ -21,13 +21,12 @@ flask = Flask(__name__)
 def home():
     if request.method == 'POST':
         prompt = request.form['textarea']
-        return render_template('index.html', result= prompt + 'something')
+        return render_template('index.html', result=generate_text(prompt))
         
     return render_template('index.html', result='what is the meaning of life?')
 
-'''
-def home_post(prompt):
-    prompt = request.form['text']
+
+def generate_text(prompt):
     max_length = 150
     inputs = tokenizer(prompt, return_tensors='pt')
     
@@ -38,8 +37,8 @@ def home_post(prompt):
     for i in range(0, len(bloom_model), chars_per_line):
         result += bloom_model[i:i+chars_per_line] + '\n'
 
-    return render_template('index.html', result=result)
-'''
+    return result
+
 # run the flask app
 if __name__ == '__main__':
     flask.run(debug=True)
