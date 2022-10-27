@@ -2,7 +2,7 @@
     <head>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-        <link href="./style.css" rel="stylesheet" />
+        <link href="static/css/style.css" rel="stylesheet" />
     </head>
     <body>
 
@@ -31,19 +31,15 @@
                         <p>Write an idea or question in the text area and see what BLOOM can generates </p>
                         <br /><br />
                         
-                        <button type="button" class="nes-btn is-success">Generate</button>
-                        <br /><br />
-                        
-                        <textarea id="textarea_field" class="nes-textarea"  rows="10">what kind of life could have the jupiter moon europa?</textarea>
-
+                        <!-- form with post action -->
+                        <form action="" method="POST">
+                            <button type="submit" class="nes-btn is-success">Generate</button>
+                            <br /><br />
+                            <textarea id="textarea" name="textarea" class="nes-textarea"  rows="10">{{ result }}</textarea>
+                        </form>
                     </section>
-
-                    
-
                 </main>
             </div>
-
         </div>
-        
     </body>
 </html>
