@@ -5,6 +5,11 @@ Simple webui to use BLOOM Language Model.
 - python
 - python env
 
+```bash
+# Debian-based:
+sudo apt install wget git python3 python3-venv
+```
+
 ## Configure
 Run the start.sh script.
 ```bash
